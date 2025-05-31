@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         //判断是否是用户名重复
          if (mes.contains("Duplicate entry")){
             String[] split = mes.split(" ");
-            String msg=split[2]+ MessageConstant.ALREADY_EXISTS;
+            String msg=split[2]+ MessageConstant.ACCOUNT_LOCKED;
             return Result.error(msg);
         }
          //其他 错误
