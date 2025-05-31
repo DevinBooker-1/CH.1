@@ -1,5 +1,6 @@
 package com.sky.context;
 
+//存储当前登录用户id，thread的存储空间
 public class BaseContext {
 
     public static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
