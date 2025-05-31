@@ -103,4 +103,14 @@ Page<Employee> page=employeeMapper.pageQuery(employeePageQueryDTO);
     List<Employee> records=page.getResult();
     return new PageResult(total,records);
 }
+/**
+ * 员工状态修改
+ */
+public void startOrStop(Integer status,long id){
+    Employee employee=new Employee();
+    //也可以使用builder创建对象
+    employee.setStatus( status);
+    employee.setId(id);
+    employeeMapper.update(employee);
+    }
 }

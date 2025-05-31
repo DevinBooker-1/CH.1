@@ -87,4 +87,10 @@ public Result save(@RequestBody EmployeeDTO employeeDTO){
         PageResult pageResult=employeeService.pageQuery( employeePageQueryDTO);
         return Result.success(pageResult);
     }
+    @PostMapping ("/status/{status}")
+    public Result startOrStop(@PathVariable Integer status,long id){
+        log.info("员工状态修改:{},{}",status,id);
+        employeeService.startOrStop(status,id);
+        return Result.success();
+    }
 }
