@@ -113,4 +113,25 @@ public void startOrStop(Integer status,long id){
     employee.setId(id);
     employeeMapper.update(employee);
     }
+    /**
+     * 根据id查询员工
+     */
+    public Employee getById(Long id){
+        Employee employee=employeeMapper.getById(id);
+        //处理密码，不想让前端看到，
+        employee.setPassword("****");
+        return employee;
+    }
+    /*
+    编辑员工信息
+     */
+    public void update(EmployeeDTO employeeDTO){
+        Employee employee=new Employee();
+        //将dto对象拷贝到entity对象
+        BeanUtils.copyProperties(employeeDTO,employee);
+        employee.setUpdateTime(LocalDateTime.now());
+        //BaseContext.getCurrentId()底层是从ThreadLocal中获取的(在jwt校验中已经设置好了)
+         employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.update(employee);
+    }
 }

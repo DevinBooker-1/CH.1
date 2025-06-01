@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.awt.geom.RectangularShape;
 import java.util.HashMap;
 import java.util.Map;
@@ -92,5 +93,25 @@ public Result save(@RequestBody EmployeeDTO employeeDTO){
         log.info("员工状态修改:{},{}",status,id);
         employeeService.startOrStop(status,id);
         return Result.success();
+    }
+    /*
+    根据id查询员工
+     */
+    @GetMapping("/{id}")
+    public  Result<Employee> getById(@PathVariable Long id){
+        log.info("根据id查询员工:{}",id);
+        Employee employee=employeeService.getById(id);
+        return Result.success(employee);
+    }
+    /*
+    编辑员工信息
+    @RequestBody用于接收前端传递过来的json格式的数据
+    HttpServletRequest用于获取请求头中的token
+     */
+    @PutMapping
+    public Result  update(@RequestBody EmployeeDTO employeeDTO){
+         log.info("编辑员工信息:{}",employeeDTO);
+         employeeService.update(employeeDTO);
+return Result.success();
     }
 }
