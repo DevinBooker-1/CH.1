@@ -83,13 +83,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         //设置初始密码(默认123456)
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
         //设置创建时间和修改时间
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setCreateTime(LocalDateTime.now());;
-        //设置创建人id和修改人id
-        //todo 后期需要修改为当前登录用户的id
-        //取出已经存储的 id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setCreateTime(LocalDateTime.now());;
+//        //设置创建人id和修改人id
+//        //todo 后期需要修改为当前登录用户的id
+//        //取出已经存储的 id
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.insert(employee);
     }
 
@@ -129,9 +129,9 @@ public void startOrStop(Integer status,long id){
         Employee employee=new Employee();
         //将dto对象拷贝到entity对象
         BeanUtils.copyProperties(employeeDTO,employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        //BaseContext.getCurrentId()底层是从ThreadLocal中获取的(在jwt校验中已经设置好了)
-         employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        //BaseContext.getCurrentId()底层是从ThreadLocal中获取的(在jwt校验中已经设置好了)
+//         employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 }
